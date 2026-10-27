@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+:root {
+  --paper: #f5f2ec;
+  --paper-2: #ebe6dc;
+  --ink: #151515;
+  --ink-2: #5a5852;
+  --rule: #d6d0c4;
+  --marker: #d94032;
+  --marker-ink: #b0281d;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-rule: var(--rule);
+  --color-marker: var(--marker);
+  --color-marker-ink: var(--marker-ink);
+  --color-tape: rgb(222 210 182 / 0.75);
+}
+
+@theme {
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+  --font-bn: 'Hind Siliguri', 'Nirmala UI', sans-serif;
+
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-body: 1.0625rem;
+  --text-lead: 1.25rem;
+  --text-h3: 1.5rem;
+  --text-h2: clamp(2.2rem, 4.4vw, 4rem);
+
+  --breakpoint-*: initial;
+  --breakpoint-md: 900px;
+  --breakpoint-xl: 1400px;
+
+  --container-page: 1280px;
+  --spacing-margin: clamp(1rem, 4vw, 3rem);
+  --spacing-gutter: clamp(1rem, 2vw, 1.5rem);
+  --spacing-masthead: 3rem;
+  --spacing-section: clamp(5rem, 14vh, 10rem);
+}
+
+@utility clip-rough {
+  clip-path: polygon(
+    0.6% 1.2%,
+    18% 0%,
+    41% 1.4%,
+    63% 0.2%,
+    86% 1.1%,
+    100% 0%,
+    99.2% 22%,
+    100% 47%,
+    98.9% 71%,
+    100% 100%,
+    79% 98.6%,
+    55% 100%,
+    33% 98.8%,
+    12% 100%,
+    0% 98.9%,
+    1.1% 74%,
+    0% 51%,
+    0.9% 26%
+  );
+}
+
+@layer base {
+  * {
+    @apply border-rule;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--spacing-masthead) + 1rem);
+  }
+  body {
+    @apply bg-paper font-sans text-body leading-[1.65] text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+  img,
+  svg,
+  video,
+  audio {
+    max-width: 100%;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    @apply bg-ink text-paper;
+  }
+  :focus-visible {
+    outline: 2px solid var(--marker);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
